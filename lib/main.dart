@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:isolation/home.dart';
+import 'package:worker_manager/worker_manager.dart';
 
-void main() {
+void main() async{
+  workerManager.log = true;
+  await workerManager.init();
   runApp(const MainApp());
 }
 

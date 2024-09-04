@@ -3,6 +3,7 @@ import 'dart:isolate';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:worker_manager/worker_manager.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -15,11 +16,11 @@ class Home extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 150),
 
               const SizedBox(
-                height: 200,
-                width: 200,
+                height: 150,
+                width: 150,
                 child: CircularProgressIndicator(),
               ),
               const SizedBox(height: 50),
@@ -133,13 +134,29 @@ class Home extends StatelessWidget {
                         }
                       },
                     ),
-                    // MaterialButton(
-                    //   color: Colors.grey,
-                    //   textColor: Colors.white,
-                    //   child: const Text('Work Manager'),
-                    //   onPressed: () async {
-                    //   },
-                    // ),
+                    MaterialButton(
+                      color: Colors.deepPurpleAccent,
+                      textColor: Colors.white,
+                      child: const Text('Work Manager'),
+                      onPressed: () async {
+                        final stopwatch = Stopwatch()..start();
+                        workerManager.execute(()=>computeHeavyTask(1)).then((value){
+                            stopwatch.stop();
+                            final executionTimeInSeconds =
+                            stopwatch.elapsedMilliseconds / 1000;
+
+                            var snackBar = SnackBar(
+                          backgroundColor: Colors.deepPurpleAccent,
+                          content: Text(
+                            "Result is: ${value.toString()}. ($executionTimeInSeconds s)",
+                          ),
+                        );
+
+                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                        });
+                      },
+                    ),
                   ],
                 ),
               ),
