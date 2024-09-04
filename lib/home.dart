@@ -40,7 +40,9 @@ class Home extends StatelessWidget {
                         "Result is: ${result.toString()}. ($executionTimeInSeconds s)"),
                   );
 
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(snackBar);
                 },
               ),
               Expanded(
@@ -68,8 +70,10 @@ class Home extends StatelessWidget {
                           content: Text(
                               "Result is: ${result.toString()}. ($executionTimeInSeconds s)"),
                         );
-                
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                        ScaffoldMessenger.of(context)
+                          ..removeCurrentSnackBar()
+                          ..showSnackBar(snackBar);
                       },
                     ),
                     MaterialButton(
@@ -90,8 +94,10 @@ class Home extends StatelessWidget {
                           content: Text(
                               "Result is: ${result.toString()}. ($executionTimeInSeconds s)"),
                         );
-                
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                        ScaffoldMessenger.of(context)
+                          ..removeCurrentSnackBar()
+                          ..showSnackBar(snackBar);
                       },
                     ),
                     MaterialButton(
@@ -120,8 +126,10 @@ class Home extends StatelessWidget {
                               "Result is: ${message.toString()}. ($executionTimeInSeconds s)",
                             ),
                           );
-                
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                          ScaffoldMessenger.of(context)
+                            ..removeCurrentSnackBar()
+                            ..showSnackBar(snackBar);
                         } catch (error) {
                           var snackBar = SnackBar(
                             backgroundColor: Colors.red,
@@ -152,7 +160,9 @@ class Home extends StatelessWidget {
                           ),
                         );
 
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            ScaffoldMessenger.of(context)
+                              ..removeCurrentSnackBar()
+                              ..showSnackBar(snackBar);
 
                         });
                       },
